@@ -19,14 +19,13 @@ def dashboard(request):
 			newdoc.owner=request.user
 			newdoc.save()
 
-            # Redirect to the document list after POST
-			return redirect('/dashboard/')
+    		return redirect('/dashboard/')
 
 	else:
 		form = DocumentForm() # A empty, unbound form
 
     # Load documents for the list page
-	images = Document.objects.filter(owner=request.user).order_by('-time')
+	images = Document.objects.filter(owner=request.user)
 	paginator = Paginator(images,50)
 
 	page = request.GET.get('page')
@@ -39,8 +38,7 @@ def dashboard(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
 		documents = paginator.page(paginator.num_pages)
 
-    # Render list page with the documents and the form
-	return render_to_response('home/dashboard.html',{'documents': documents, 'form': form},
+    return render_to_response('home/dashboard.html',{'documents': documents, 'form': form},
     							context_instance=RequestContext(request))
 
 
