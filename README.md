@@ -6,8 +6,13 @@ sorted chronologically. Initially it shows 50 photos and then a pull to refresh 
 on the timeline. The implementation works for multiple users.
 
 The project uses 
+
 1. Django Pagination
+
 2. Memcache
+
 3. Twitter Bootstrap
+
 4. Jinja
+
 5. PostgreSQL
